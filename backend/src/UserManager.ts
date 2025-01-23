@@ -41,6 +41,6 @@ export class UserManger {
 
     won(id: number, amount: number, output: number) {
         console.log("won");
-        this._users[id]?.won(amount, output);
+        this._users[id]?.won();
     }
 }
