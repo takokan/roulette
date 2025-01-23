@@ -19,32 +19,32 @@ export class User {
         this.locked = 0;
     }
 
+
     bet(clientId: string, amount: COINS, betNumber: Number){
         this.balance -= amount;
         this.locked += amount;
         const response = GameManager.getInstance().bet(amount, betNumber, this.id);
         if(response) {
-            this.ws.send(JSON.stringify({
+            this.send({
                 clientId,
-                type: "bet", 
+                type: "bet",
                 amount: amount,
                 balance: this.balance,
                 locked: this.locked
-            }));
+            })
         } else {
-            this.ws.send(JSON.stringify({
+            this.send({
                 clientId,
                 type: "bet-undo",
                 amount: amount,
                 balance: this.balance,
-                locked: this.locked
-            }));
-
+                locked: this.locked 
+            })
         }
     }
 
     won(){
-        
+
     }
     send(payload: OutGoingMessages){
         this.ws.send(JSON.stringify(payload));

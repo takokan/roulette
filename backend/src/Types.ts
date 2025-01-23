@@ -1,6 +1,16 @@
 
 export type OutGoingMessages = {
     type: "bet",
+    clientId: string,
+    amount: number,
+    balance: number,
+    locked: number
+} | {
+    type: "bet-undo",
+    clientId: string,
+    amount: number,
+    balance: number,
+    locked: number
 }
  
 export enum COINS {
