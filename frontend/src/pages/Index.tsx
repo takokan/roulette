@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'sonner';
-import RouletteWheel from '../components/RouletteWheel';
 import BettingBoard from '../components/BettingBoard';
 import ChipSelector from '../components/ChipSelector';
+import { COINS } from '../../../backend/src/Types';
 
 const Index = () => {
   const [currentNumber, setCurrentNumber] = useState<number | null>(null);
-  const [selectedChipValue, setSelectedChipValue] = useState(1);
+  const [selectedChipValue, setSelectedChipValue] = useState<COINS>(COINS.One);
   const [balance, setBalance] = useState(1000);
 
   useEffect(() => {
@@ -35,13 +35,8 @@ const Index = () => {
         <h1 className="text-4xl font-bold mb-2">Roulette</h1>
         <p className="text-xl text-primary">Balance: ${balance}</p>
       </div>
-
-      <RouletteWheel
-        isSpinning={false}
-        onSpin={() => {}}
-        currentNumber={currentNumber}
-      />
-
+      
+      
       <ChipSelector
         onSelectChip={setSelectedChipValue}
         selectedValue={selectedChipValue}
